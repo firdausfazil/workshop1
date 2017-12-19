@@ -55,8 +55,10 @@ $barfacial = mysql_real_escape_string($_POST['service4']);
 		$count = mysqli_num_rows($result);
 	
 		if($count == 0){
-		 $sql = "INSERT INTO barber (barname, baremail, barpassword, barphonum, baraddress, barcity, barzipcode, barcountry, barcompany, barstatus)
-				VALUES ('$bname', '$bemail', '$bpassword', '$bphonenum', '$baddress', '$bcity', '$bzip', '$bcountry', '$bcompany', '1')";
+		 $sql = "INSERT INTO barber (barname, baremail, barpassword, barphonum, baraddress, 
+					barcity, barzipcode, barcountry, barcompany, barstatus)
+				VALUES ('$bname', '$bemail', '$bpassword', '$bphonenum', '$baddress', '$bcity', 
+				'$bzip', '$bcountry', '$bcompany', '1')";
 			mysqli_query($db, $sql);
 		
 		($barcut==''?0 : $barcut);
