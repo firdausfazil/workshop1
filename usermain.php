@@ -48,7 +48,7 @@ $email = $_SESSION['email'];
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php">BarBa</a>
+        <a class="navbar-brand" href="usermain.php">BarBa</a>
 		<a href="userprofile.php"><?= $email ?></a>
         	
       </div>
@@ -80,8 +80,6 @@ $email = $_SESSION['email'];
           <tr align="center">
           	<th>Barber Name</th>
 			<th>Barber's Company</th>
-          	<th>Barber Email</th>
-            <th>Barber Number</th>
             <th>Barber Region</th>
 			<th>Action</th>
             
@@ -93,11 +91,9 @@ $email = $_SESSION['email'];
 		<tr onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" bgcolor="#FFFFFF" align="center">
 			<td><?php echo $key['barname']; ?></td>
 			<td><?php echo $key['barcompany']; ?></td>
-			<td><?php echo $key['baremail']; ?></td>
-			<td><?php echo $key['barphonum']; ?></td>
 			<td><?php echo $key['barcity']; ?>,<?php echo $key['barcountry']; ?></td>
 			<td><a href="db.php?barber_id=<?php echo  $key['id']; ?>&&user_id=<?php echo $user_id; ?>" onclick="return confirm('Are You sure');">BOOK</a> |
-			<a href="viewbarber.php?barber_id=<?php echo  $key['id']; ?>">VIEW</a></td>
+			<a href="viewbarber.php?barbra_id=<?php echo  $key['id']; ?>">VIEW</a></td>
 		</tr>
 			
 		  

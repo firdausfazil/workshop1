@@ -13,6 +13,12 @@ else{
 	$sql = "SELECT * FROM barber WHERE barcountry='melaka' ";
 	$result = mysqli_query($db, $sql);
 }
+
+	$cust = "SELECT * FROM cust WHERE custemail='$email'";	
+	$custo = mysqli_query($db, $cust);
+	foreach ($custo as $lol){
+		$user_id = $lol['id'];
+	}
 ?>
 <html lang="en">
 
@@ -48,7 +54,7 @@ else{
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php">BarBa</a>
+        <a class="navbar-brand" href="usermain.php">BarBa</a>
 		<a href="userprofile.php"><?= $email ?></a>
         	
       </div>
@@ -92,8 +98,6 @@ else{
 				<tr align="center">
 					<th>Barber Name</th>
 					<th>Barber's Company</th>
-					<th>Barber Email</th>
-					<th>Barber Number</th>
 					<th>Barber Region</th>
 					<th>Action</th>
 				</tr> 
@@ -105,11 +109,9 @@ else{
 				<tr onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" bgcolor="#FFFFFF" align="center">
 					<td><?php echo $key['barname']; ?></td>
 					<td><?php echo $key['barcompany']; ?></td>
-					<td><?php echo $key['baremail']; ?></td>
-					<td><?php echo $key['barphonum']; ?></td>
 					<td><?php echo $key['barcity']; ?>,<?php echo $key['barcountry']; ?></td>
-					<td><a href="userbooking.php?barber_id=<?php echo  $key['id']; ?>" onclick="return confirm('Are You sure');">BOOK</a> |
-					<a href="viewbarber.php?barber_id=<?php echo  $key['id']; ?>">VIEW</a></td>
+					<td><a href="db.php?barber_id=<?php echo  $key['id']; ?>&&user_id=<?php echo $user_id; ?>" onclick="return confirm('Are You sure');">BOOK</a> |
+					<a href="viewbarber.php?barbra_id=<?php echo  $key['id']; ?>">VIEW</a></td>
 				</tr>			
 				
 				<?php

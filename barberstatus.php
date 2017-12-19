@@ -44,7 +44,7 @@ $new = $row['barstatus'];
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php">BarBa</a>
+        <a class="navbar-brand" href="barbermain.php">BarBa</a>
 		<a href="barberprofile.php"><?= $email ?></a>
         	
       </div>

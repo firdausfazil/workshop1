@@ -44,7 +44,7 @@ foreach($result as $disp) {
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">BarBa</a>
+        <a class="navbar-brand" href="barbermain.php">BarBa</a>
         <a href="barberprofile.php"><?= $email ?></a>	
       </div>
 	  
@@ -110,7 +110,7 @@ foreach($result as $disp) {
           <input type="checkbox" id="haircoloring" value="1" name="service3"><label class="light" >Hair Coloring</label><br>
 		  <input type="checkbox" id="essentialfacials" value="1" name="service4"><label class="light" >Essential Facials</label>
         </fieldset>
-        <button type="submit" name="updatebarber">Sign Up</button>
+        <button type="submit" name="barberupdate">Update</button>
       </form>
 
 	<?php

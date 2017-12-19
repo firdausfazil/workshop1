@@ -57,7 +57,7 @@ $email = $_SESSION['email'];
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php">BarBa</a>
+        <a class="navbar-brand" href="usermain.php">BarBa</a>
 		<a href="userprofile.php"><?= $email ?></a>	
       </div>  
     </nav>
@@ -86,8 +86,6 @@ $email = $_SESSION['email'];
 				  <tr align="center">
 					<th>Barber Name</th>
 					<th>Barber's Company</th>
-					<th>Barber Email</th>
-					<th>Barber Number</th>
 					<th>Barber Region</th>
 					<th>Action</th>
 					
@@ -100,10 +98,9 @@ $email = $_SESSION['email'];
 				<tr onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" bgcolor="#FFFFFF" align="center">
 					<td><?php echo $key['barname']; ?></td>
 					<td><?php echo $key['barcompany']; ?></td>
-					<td><?php echo $key['baremail']; ?></td>
-					<td><?php echo $key['barphonum']; ?></td>
 					<td><?php echo $key['barcity']; ?>,<?php echo $key['barcountry']; ?></td>
-					<td><a href="db.php?barb_id=<?php echo  $key['id']; ?>&use_id=<?php echo $userid; ?>" onclick="return confirm('Are You sure');">CANCEL</a></td>
+					<td><a href="db.php?barb_id=<?php echo  $key['id']; ?>&use_id=<?php echo $userid; ?>" onclick="return confirm('Are You sure');">CANCEL</a> |
+					<a href="viewbarber.php?barbra_id=<?php echo  $key['id']; ?>">VIEW</a></td></td>
 				</tr>			
 				
 				<?php

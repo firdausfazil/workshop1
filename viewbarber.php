@@ -3,8 +3,8 @@
 include "db.php";
 
 $email = $_SESSION['email'];	
-$str  = $_REQUEST['barber_id'];
-$sql="SELECT * FROM barber JOIN service ON service.id = barber.id WHERE id='$str'";
+$str  = $_REQUEST['barbra_id'];
+$sql="SELECT * FROM barber WHERE id='$str'";
 $result = mysqli_query($db, $sql);
 ?>
 <html lang="en">
@@ -43,7 +43,7 @@ $result = mysqli_query($db, $sql);
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php">BarBa</a>
+        <a class="navbar-brand" href="usermain.php">BarBa</a>
 		<a href=""><?= $email ?></a>	
       </div>  
     </nav>  
@@ -55,6 +55,9 @@ $result = mysqli_query($db, $sql);
 				<a href="usermain.php"><b>HOME </b></a>
 			</div>
 			<div class="col-sm-1">
+				<a href="usersearch.php"><b>SEARCH </b></a>
+			</div>
+			<div class="col-sm-1">
 				<a href="userbooking.php"><b>BOOKING</b></a>
 			</div>
 		</div>
@@ -64,8 +67,8 @@ $result = mysqli_query($db, $sql);
 	<br><br>
 	
 	<div class="row">
-	<div class="col-sm-9">
-	<h1>User Profile</h1>
+	<div class="col-sm-12">
+	<h1>Barber Profile</h1>
 	<table style="width:100%; border-spacing:1;"  align="center">
 		<?php
           foreach ($result as $key) {  

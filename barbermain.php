@@ -55,7 +55,7 @@ $boo = "SELECT * FROM booking JOIN cust ON cust.id = booking.cust_id WHERE bar_i
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">BarBa</a>
+        <a class="navbar-brand" href="barbermain.php">BarBa</a>
 		<a href="barberprofile.php"><?= $email ?></a>
         	
       </div>
@@ -78,7 +78,7 @@ $boo = "SELECT * FROM booking JOIN cust ON cust.id = booking.cust_id WHERE bar_i
 <div class="container">
 <br><br>
     <div class="col-sm-12">
-        <h1>Booking Information</h1>
+        <h1>Booked By</h1>
       <table style="width:100%; border-spacing:1;" align="center">
           <tr align="center">
           	<th>Customer Name</th>
@@ -96,7 +96,7 @@ $boo = "SELECT * FROM booking JOIN cust ON cust.id = booking.cust_id WHERE bar_i
 					<td><?php echo $key['custname']; ?></td>
 					<td><?php echo $key['custemail']; ?></td>
 					<td><?php echo $key['custphonum']; ?></td>
-					<td><a href="db.php?barbe_id=<?php echo $barbook  ?>&u_id=<?php echo $key['id']; ?>" onclick="return confirm('Are You sure');">CANCEL</a>  | 
+					<td><a href="db.php?barbe_id=<?php echo $barbook  ?>&u_id=<?php echo $key['id']; ?>" onclick="return confirm('Are You sure');">DECLINE</a>  | 
 						<a href="db.php?b_id=<?php echo  $barbook ?>&us_id=<?php echo $key['id']; ?>" onclick="return confirm('Are You sure');">COMPLETE</a></td>
 				</tr>			
 				

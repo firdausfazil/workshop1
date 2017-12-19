@@ -3,7 +3,7 @@
 <?php
 include "db.php";
 
-$email = $_SESSION['email'];
+$email = $_SESSION['femail'];
 ?>
 
 <html lang="en">
@@ -42,13 +42,13 @@ $email = $_SESSION['email'];
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">BarBa</a>
+        <a class="navbar-brand" href="index.php">BarBa</a>
         	
       </div>
 	  
     </nav>   
 	<br><br>
-		<form action="db.php" method="post">
+		<form action="" method="post">
       
         <h1>Sign Up as Member</h1>
         

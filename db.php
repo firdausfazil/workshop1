@@ -14,12 +14,20 @@ $email = mysql_real_escape_string($_POST['user_email']);
 $password = mysql_real_escape_string($_POST['user_password']);
 $phonenum= mysql_real_escape_string($_POST['user_num']);
 
-
-		$sql = "INSERT INTO cust (custname, custemail, custpassword, custphonum)
-				VALUES ('$name', '$email', '$password', '$phonenum')";
-		
-		mysqli_query($db, $sql);
-		header('location: usermain.php');
+		$sql = "SELECT * FROM cust WHERE custemail='$email'";
+		$result = mysqli_query($db, $sql);
+		$count = mysqli_num_rows($result);
+	
+		if($count == 0){
+			$sql = "INSERT INTO cust (custname, custemail, custpassword, custphonum)
+					VALUES ('$name', '$email', '$password', '$phonenum')";
+			mysqli_query($db, $sql);
+			header('location: usermain.php');
+		}else{
+			
+			$message = "Email already exist";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
 }
 
 
@@ -42,7 +50,11 @@ $barclean = mysql_real_escape_string($_POST['service2']);
 $barcolor = mysql_real_escape_string($_POST['service3']);
 $barfacial = mysql_real_escape_string($_POST['service4']);
 	
+		$sql = "SELECT * FROM barber WHERE baremail='$bemail'";
+		$result = mysqli_query($db, $sql);
+		$count = mysqli_num_rows($result);
 	
+		if($count == 0){
 		 $sql = "INSERT INTO barber (barname, baremail, barpassword, barphonum, baraddress, barcity, barzipcode, barcountry, barcompany, barstatus)
 				VALUES ('$bname', '$bemail', '$bpassword', '$bphonenum', '$baddress', '$bcity', '$bzip', '$bcountry', '$bcompany', '1')";
 			mysqli_query($db, $sql);
@@ -55,6 +67,10 @@ $barfacial = mysql_real_escape_string($_POST['service4']);
 					VALUES ('$barcut', '$barclean', '$barcolor', '$barfacial')";
 			mysqli_query($db, $sql);
 		header('location: barbermain.php'); 
+		}else{
+			$message = "Email already exist";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
 }
 
 if(isset($_POST['statusupdate'])){
@@ -78,16 +94,30 @@ $_SESSION['email'] = $_POST['logemail'];
 
 if ($signas==1) {
 	$sql = "SELECT * FROM cust WHERE custemail='$loge' AND custpassword='$logp'";
-	mysqli_query($db, $sql);
+	$result = mysqli_query($db, $sql);
+	$count = mysqli_num_rows($result);
+	
+	if($count == 1){	
 	$_SESSION['user_id'] = $row['id'];
 	header('location: usermain.php');
+	}else{
+	$message = "wrong Email/Password";
+	echo "<script type='text/javascript'>alert('$message');</script>";
 	}
+}
 else{
 	$sql = "SELECT * FROM barber WHERE baremail='$loge' AND barpassword='$logp'";	
-	mysqli_query($db, $sql);
-	$_SESSION['user_id'] = $row['id'];
-	header('location: barbermain.php');
-	}		
+	$result = mysqli_query($db, $sql);
+	$count = mysqli_num_rows($result);
+
+	if($count == 1){
+		$_SESSION['user_id'] = $row['id'];
+		header('location: barbermain.php');
+	}
+	else{
+		$message = "wrong Email/Password";
+		echo "<script type='text/javascript'>alert('$message');</script>";}
+}		
 }
 
 if (isset($_POST['deleteuser'])) {
@@ -117,8 +147,17 @@ $cphonenum = mysql_real_escape_string($_POST['up_usernum']);
 }
 
 if (isset($_POST['deletebarber'])) {
-	$email = $_SESSION['email'];	
+	$email = $_SESSION['email'];
+
+	$sql = "SELECT * FROM barber WHERE baremail='$email'";
+	$custo = mysqli_query($db, $sql);
+	foreach ($custo as $lol){
+		$bar_id = $lol['id'];
+	}	
 	$sql = "DELETE FROM barber WHERE baremail='$email'";
+	mysqli_query($db, $sql);
+	
+	$sql = "DELETE FROM service WHERE id='$bar_id'";
 	mysqli_query($db, $sql);
 	header('location: index.php');
 }
@@ -141,9 +180,23 @@ $bcity= mysql_real_escape_string($_POST['up_barbercity']);
 $bzip= mysql_real_escape_string($_POST['up_barberzipcode']);
 $bcountry= mysql_real_escape_string($_POST['up_barbercountry']);
 $bcompany = mysql_real_escape_string($_POST['up_barbercname']);
+
+$barcut = mysql_real_escape_string($_POST['service1']);
+$barclean = mysql_real_escape_string($_POST['service2']);
+$barcolor = mysql_real_escape_string($_POST['service3']);
+$barfacial = mysql_real_escape_string($_POST['service4']);
 	
-	$sql = "UPDATE cust SET barname='$bname', baremail='$bemail', barpassword='$bpassword', barphonum='$bphonenum', baraddress='$baddress', barcity='$bcity', barzipcode='$bzip', barcountry='$bcountry', barcaompany='$bcompany' WHERE custemail='$email'";
+	$sql = "SELECT * FROM barber WHERE baremail='$email'";
+	$custo = mysqli_query($db, $sql);
+	foreach ($custo as $lol){
+		$bar_id = $lol['id'];
+	}
+	$sql = "UPDATE barber SET barname='$bname', baremail='$bemail', barpassword='$bpassword', barphonum='$bphonenum', baraddress='$baddress', barcity='$bcity', barzipcode='$bzip', barcountry='$bcountry', barcaompany='$bcompany' WHERE custemail='$email'";
 	mysqli_query($db, $sql);
+	
+	$sql = "UPDATE service SET haircut='$barcut', haircleaning='$barclean', haircoloring='$barcolor', essentialfacials='$barfacial' WHERE id='$bar_id'";
+	mysqli_query($db, $sql);
+	header('location: index.php');
 	header('location: barbermain.php');
 }
 

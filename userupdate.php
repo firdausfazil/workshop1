@@ -47,7 +47,7 @@ foreach($result as $disp) {
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">BarBa</a>
+        <a class="navbar-brand" href="usermain.php">BarBa</a>
         <a href="userprofile.php"><?= $email ?></a>	
       </div>
 	  
