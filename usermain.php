@@ -99,8 +99,8 @@ $email = $_SESSION['email'];
 		  
 		  
 		<?php
-  }//while
-  ?>  
+			}
+		?>  
 	</table>
         	
       </div>
